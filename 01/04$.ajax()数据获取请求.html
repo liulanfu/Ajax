@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./js/jquery-1.12.4.min (1).js"></script>
+
+<body>
+    <button type="button" id="btn">请求数据</button>
+    <button type="button" id="btn1">提交数据</button>
+    <script>
+        $(function () {
+        //带参数
+            // $("#btn").click(function () {
+            //     $.ajax({
+            //         type: 'GET',
+            //         url: 'http://www.liulongbin.top:3006/api/getbooks',
+            //         data: { id: 1 },
+            //         success: function (res) {
+            //             console.log(res);
+            //         }
+            //     });
+            // });
+
+        //不带参数
+            $('#btn').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://www.liulongbin.top:3006/api/getbooks',
+                    data: {},
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+
+        //提交数据
+            $("#btn1").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://www.liulongbin.top:3006/api/addbook',
+                    data: { bookname: "回首掏", author: "芜湖大司马", publisher: "走位走位" },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let str = '<div>我是{{name}},{{age}}</div>';
+        // let res = /{{([a-zA-Z]+)}}/;
+        // let html = res.exec(str);
+        // console.log(html);
+        // str = str.replace(html[0], html[1]);
+        // console.log(str);
+        // let html2 = res.exec(str);
+        // str = str.replace(html2[0], html2[1]);
+        // console.log(str);
+        // let html3 = res.exec(str);
+        // str = str.replace(html3[0], html3[1]);
+        // console.log(str);
+
+
+
+        // let pattern = /{{([a-zA-Z]+)}}/;    //+号表示至少出现一次   //加（）是为了获取name
+        // let patternResult = pattern.exec(str);
+        // console.log(patternResult); //['{{name}}','name'];
+        // str = str.replace(patternResult[0], patternResult[1]);
+        // document.body.innerHTML = str;
+
+    //多次替换
+    // 方法一,可以替换真实数据
+        // const data = {
+        //     name: '小胖',
+        //     age: 22,
+        //     hobby: '喜欢扣屁股'
+        // };
+        // // console.log(data['age']); 
+        // let str = '<div>我是{{name}},年龄{{age}},爱好{{hobby}}</div>';
+        // let pattern = /{{([a-zA-Z]+)}}/;    //+号表示至少出现一次   //加（）是为了获取name
+        // let patternResult = null;
+        // while (patternResult = pattern.exec(str)) {
+        //     str = str.replace(patternResult[0], data[patternResult[1]]);
+        //     console.log(patternResult); //['{{name}}','name'];
+        // }
+
+        // document.body.innerHTML = str;
+
+    //方法二,可以替换真实数据
+        const data = {
+            name: '小胖',
+            age: 22,
+            hobby: '喜欢扣屁股'
+        };
+        let str = '<div>我是{{name}},{{age}},{{hobby}}</div>';
+        let html = /{{([a-zA-Z]+)}}/g;   //正则表达式里的g表示匹配全局
+        str = str.replace(html, (a, b) => {
+            console.log('a', a);
+            console.log('b', b);
+            return data[b];               //replace的第一个参数是要被(也就是正则里匹替换的内容配到的内容,第二个参数可以是个方法(a,b),方法里面有两个参数,第一个参数是：即{{name}},第二个参数是：即name);
+        });
+        console.log(str);
+
+    //方法三,替换不了真实数据
+        // let str = '<div>我是{{name}},{{age}},{{hobby}}</div>';
+        // let html = /{{([a-zA-Z]+)}}/g;
+        // str = str.replace(html, '$1');   //$1是提取到的内容 即：name
+        // console.log(str);
+
+
+    </script>
+</body>
+
+</html>

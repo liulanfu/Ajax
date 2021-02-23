@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <script src="./js/template.js"></script> -->
+<script src="./js/myTemplate.js"></script>
+
+<body>
+    <div class="box"></div>
+
+    <script type="text/html" id="tpl-user">
+        <div>姓名：{{name}}</div>
+        <div>年龄：{{age}}</div>
+        <div>性别：{{gender}}</div>
+        <div>地址：{{address}}</div>
+    </script>
+
+    <script>
+        const data = {
+            name: '小四',
+            age: 26,
+            gender: '男',
+            address: '谭家贩毒集团'
+        }
+        const htmls = template('tpl-user', data);
+        document.querySelector('.box').innerHTML = htmls
+    </script>
+</body>
+
+</html>

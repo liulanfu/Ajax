@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const data={
+            name: 'x',
+            age:18,
+            msg: '很棒',
+            text: ''
+        }
+
+        let str='<div>我是{{name}},今年{{age}}岁了,{{msg}}</div>';
+        let pattern=/{{([a-zA-Z]+)}}/;    //+号表示至少出现一次   //加（）是为了获取name
+        console.log(pattern.exec(str));   //.exec()是正则表达式的方法 
+        
+        
+    </script>
+</body>
+</html>

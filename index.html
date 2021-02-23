@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            getName: '234',
+            getJson: '123'
+        }
+        function handleObj(object) {
+            const zz = /[A-Z]+/g;
+            let str = JSON.stringify(obj);
+            str = str.replace(zz, (match, key) => {
+                return `_${match.toLowerCase()}`
+            });
+            return JSON.parse(str);
+        }
+        const res = handleObj(obj);
+        console.log(res);
+    </script>
+</body>
+
+</html>

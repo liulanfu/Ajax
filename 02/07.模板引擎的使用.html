@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 1.引入文件 -->
+<script src="./js/jquery-1.12.4.min (1).js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/art-template/4.13.2/lib/template-web.js"></script>
+
+<body>
+
+    <div class="box"></div>
+
+    <!-- 3.模板 -->
+    <script type="text/html" id="tpl">
+        <h3>{{name}}</h3>
+        <h2>{{@ text}}</h2>
+       <div>
+        {{if flag===0}}
+        你好啊
+        {{else if flag===1}}
+        我姮好
+        {{/if}}
+       </div>
+       <ul>
+           {{each arr}}
+           <li>{{$index}},{{$value}}</li>
+           {{/each}}
+       </ul>
+       <h1>{{regTime | dateFormat}}</h1>
+    </script>
+
+    <script>
+        template.defaults.imports.dateFormat = function (data) {
+            const dataStr = new Date(data);
+            const y = dataStr.getFullYear();
+            const m = dataStr.getMonth() + 1;
+            const d=dataStr.getDate();
+            return `${y}-${m}-${d}`
+        }
+
+        //2.定义数据
+        const data = {
+            name: '黑马',
+            text: '<h3>你好啊</h3>',
+            flag: 1,
+            arr: ['a', 'b', 'c'],
+            regTime:new Date(),
+        }
+        // 调用template('模板id', 数据)
+        let htmls = template('tpl', data);
+        console.log(htmls);
+        //渲染页面
+        document.querySelector('.box').innerHTML = htmls;
+        // $('.box').html(htmls);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <!-- 导入页面的基本样式 -->
+  <link rel="stylesheet" href="./css/search.css" />
+  <!-- 导入 jQuery -->
+  <script src="./lib/jquery.js"></script>
+  <script src="./lib/template-web.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="./images/taobao_logo.png" alt="" class="logo" />
+
+    <div class="box">
+      <!-- tab 栏 -->
+      <div class="tabs">
+        <div class="tab-active">宝贝</div>
+        <div>店铺</div>
+      </div>
+      <!-- 搜索区域（搜索框和搜索按钮） -->
+      <div class="search-box">
+        <input type="text" class="ipt" placeholder="请输入要搜索的内容" /><button class="btnSearch">
+          搜索
+        </button>
+      </div>
+      <!-- 搜索建议列表 -->
+      <div id="suggest-list"></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 模板结构 -->
+  <script type="text/html" id="tpl-suggestList">
+    {{each result}}
+      <!--搜索建议项-->
+      <div class="suggest-item">{{$value[0]}}</div>
+    {{/each}}
+  </script>
+
+
+  <script>
+
+    let timer = null;
+    const cacheObj = {};
+    function debounceSearch(kw) {
+      timer = setTimeout(function () {
+        getSuggestionsList(kw);
+      }, 500)
+    }
+
+    $('.ipt').on('keyup', function () {
+      clearTimeout(timer);
+      let keywords = $(this).val().trim();
+      if (keywords.length <= 0) {
+        return $('#suggest-list').empty().hide();
+      }
+
+      // 优先从缓存中获取搜索建议
+      if (cacheObj[keywords]) {
+        return renderSuggestList(cacheObj[keywords])
+      }
+      // console.log(keywords)
+      // getSuggestionsList(keywords);
+      debounceSearch(keywords)
+    });
+
+
+    function getSuggestionsList(kw) {
+      $.ajax({
+        url: 'https://suggest.taobao.com/sug?q=' + kw,
+        dataType: 'jsonp',
+        success: function (res) {
+          // console.log(res);
+          renderSuggestionsList(res);
+        }
+      })
+    };
+
+    function renderSuggestionsList(res) {
+      if (res.result.length <= 0) {
+        return $('#suggest-list').empty().hide();
+      }
+
+      // 将搜索的结果，添加到缓存对象中
+      let k = $('.ipt').val().trim()
+      cacheObj[k] = res
+
+      const htmlStr = template('tpl-suggestList', res);
+      $('#suggest-list').html(htmlStr).show();
+
+    }
+  </script>
+</body>
+
+</html>

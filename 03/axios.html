@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/axios.js"></script>
+</head>
+
+<body>
+    <button id='get'>发送get请求</button>
+    <button id='post'>发送post请求</button>
+    <button id='axiosget'>axios发起请求get请求</button>
+    <button id='axiospost'>axios发起请求post请求</button>
+    <script>
+        document.querySelector('#get').addEventListener('click', function () {
+            // 请求的 URL 地址
+            const url = 'http://www.liulongbin.top:3006/api/get';
+            // 要提交到服务器的数据
+            const paramsObj = { name: '李四', age: 18 };
+            // 调用 axios.get() 发起 GET 请求
+            axios.get(url, { params: paramsObj }).then(function (res) {
+                // res.data 是服务器返回的数据
+                console.log(res.data);
+            });
+        });
+
+        document.querySelector('#post').addEventListener('click', function () {
+            // 请求的 URL 地址
+            const url = 'http://www.liulongbin.top:3006/api/post';
+            // 要提交到服务器的数据
+            const paramsObj = { location: '北京111', address: '顺义' };
+            // 调用 axios.post() 发起 POST 请求
+            axios.post(url, paramsObj).then(function (res) {
+                // res.data 是服务器返回的数据
+                console.log(res.data);
+            });
+
+        });
+
+        document.querySelector('#axiosget').addEventListener('click', function () {
+            axios({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/get',
+                params: {
+                    name: '李四',
+                    age: 18
+                },
+            }).then(function (res) {
+                console.log(res.data);
+            })
+        });
+
+        document.querySelector('#axiospost').addEventListener('click', function () {
+            axios({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/post',
+                data: {
+                    name: '李四',
+                    age: 18,
+                    sex: '女'
+                },
+            }).then(function (res) {
+                console.log(res.data);
+            })
+        })
+    </script>
+</body>
+
+</html>

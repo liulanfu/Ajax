@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--调用自己写好的ajax方法 -->
+    <script src="./js/myAjax.js"></script>
+    <script src="./js/resolve.js"></script>
+</head>
+
+<body>
+    <script>
+        // myAjax({
+        //     method: 'GET',
+        //     url: 'http://www.liulongbin.top:3006/api/getbooks',
+        //     data: {
+        //         // id: 2
+        //     },
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // });
+
+
+        // myAjax({
+        //     method: 'POST',
+        //     url: 'http://www.liulongbin.top:3006/api/addbook',
+        //     data: {
+        //         bookname: "黑马传2",
+        //         author: "老王",
+        //         publisher: "黑马出版社"
+        //     },
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // });
+
+
+        // const a = resolveData({
+        //     name: '哈皮',
+        //     age: 20
+        // });
+        // console.log(a);
+
+
+        // it({
+        //     method: 'GET',
+        //     url: 'http://www.liulongbin.top:3006/api/getbooks',
+        //     data: {
+        //         // id: 2
+        //     },
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // });
+
+        // it({
+        //     method: 'POST',
+        //     url: 'http://www.liulongbin.top:3006/api/addbook',
+        //     data: {
+        //         bookname: "黑马传2",
+        //         author: "老王",
+        //         publisher: "黑马出版社"
+        //     },
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // });
+
+
+        itCast({
+            method: 'GET',
+            url: 'http://www.liulongbin.top:3006/api/getbooks',
+            data: {
+                id: 2
+            },
+            success: function (res) {
+                console.log(res);
+            }
+        });
+
+        itCast({
+            method: 'POST',
+            url: 'http://www.liulongbin.top:3006/api/addbook',
+            data: {
+                bookname: "黑马传2",
+                author: "老王",
+                publisher: "黑马出版社"
+            },
+            success: function (res) {
+                console.log(res);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

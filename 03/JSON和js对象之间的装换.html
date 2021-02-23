@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        ///JSON 转化为 js对象  JSON.parse()
+        // const json = '{"a":"Hello","b":"World!"}';
+        // console.log(json);
+        // let obj = JSON.parse(json);      //JSON 转化为 js对象用 JSON.parse()
+        // console.log(obj);
+
+
+        ///js对象 转化为 JSON JSON.stringify()
+        // const objs = {
+        //     name: '老王',
+        //     age: 36,
+        //     hobby: ['吃饭', '睡觉', '打豆豆']
+        // };
+        // console.log(objs);
+        // let jsons = JSON.stringify(objs);     ///js对象 转化为 JSON 用 JSON.stringify()
+        // console.log(jsons);
+
+
+
+
+        const obj = {
+            name: '小胖',
+            age: 36,
+            hobby: ["打灰机", "玩游戏", "游泳"]
+        }
+
+        const str = JSON.stringify(obj);
+        console.log(str);
+
+        const obj1 = JSON.parse(str);
+        console.log(obj1);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
